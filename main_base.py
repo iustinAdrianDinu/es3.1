@@ -48,7 +48,6 @@ def prenota(sala, fila, posto):
     print(f"Prenotazione effettuata: Fila {fila}, Posto {posto}")
     return True
 
-
 def carica_sala():
     if os.path.exists("sala.csv"):
         with open("sala.csv", "r") as file:
@@ -56,8 +55,6 @@ def carica_sala():
             sala = [row for row in reader]
         print("Stato della sala caricato da sala.csv")
         return sala
-
-# Main programma, selezione caricamento sala gia esistente
 
 while True:
 
@@ -70,10 +67,8 @@ while True:
             print("Creazione di una nuova sala.")
             sala = crea_sala()
             break
-        break
     elif opzione == "2":
         sala = crea_sala()
-        break
     elif opzione == "q":
         print("Uscita dal programma.")
         exit()
@@ -81,7 +76,6 @@ while True:
         print("Opzione non valida. Riprova.")
     continue
 
-# Menu insereimento spettatori
 
 while True:
     mostra_sala(sala)
@@ -95,7 +89,7 @@ while True:
         print("Uscita dal programma.")
         break
     posto = input("Inserisci il numero del posto (1-10): ")
-      
+
     try:
         fila = int(fila)
         posto = int(posto)
