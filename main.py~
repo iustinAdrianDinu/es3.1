@@ -1,0 +1,103 @@
+#===========================
+# Esercitazione 3 - Gruppo 1
+#===========================
+
+import csv
+import os
+
+def salva_sala(sala):
+    with open("sala.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerows(sala)
+    print("Stato della sala salvato in sala.csv")
+
+# Funzione 1
+
+def crea_sala():
+  sala = []
+  for i in range(5):
+    fila = ["L"] * 10
+    sala.append(fila)
+  return sala
+
+
+# Funzione 2
+
+def mostra_sala(sala):
+    print('\nStato sala:')
+    print("       ", end="")
+    for posto in range(1, 11):
+        print(f"{posto:2}", end=' ')
+    print()
+    for i,fila in enumerate(sala, start=1):
+        print(f"Fila {i}: ", end="")
+        for posto in fila:
+            print(f"{posto:2}", end=' ')
+        print()
+
+# Funzione 3
+
+def prenota(sala, fila, posto):
+    if fila < 1 or fila > 5 or posto < 1 or posto > 10:
+        print("Coordinate non valide.")
+        return False
+    if sala[fila - 1][posto - 1] == "X":
+        print("Posto già occupato.")
+        return False
+    sala[fila - 1][posto - 1] = "X"
+    print(f"Prenotazione effettuata: Fila {fila}, Posto {posto}")
+    return True
+
+def carica_sala():
+    if os.path.exists("sala.csv"):
+        with open("sala.csv", "r") as file:
+            reader = csv.reader(file)
+            sala = [row for row in reader]
+        print("Stato della sala caricato da sala.csv")
+        return sala
+
+while True:
+
+    print("1. Carica sala")
+    print("2. Nuova sala")
+    opzione = input("Scegli un'opzione (1 o 2 o q per uscire): ")
+    if opzione == "1":
+        sala = carica_sala()
+        if sala is None:
+            print("Creazione di una nuova sala.")
+            sala = crea_sala()
+            break
+        break
+    elif opzione == "2":
+        sala = crea_sala()
+    elif opzione == "q":
+        print("Uscita dal programma.")
+        exit()
+    elif opzione!="1" and opzione!="2" and opzione!="q":
+        print("Opzione non valida. Riprova.")
+    continue
+
+
+while True:
+    mostra_sala(sala)
+    fila = input("Inserisci il numero della fila (1-5) o q per uscire: ")
+
+    if fila.lower() == 'q':
+        print("Vuoi salvare lo stato della sala prima di uscire? (s/n)")
+        risposta = input().lower()
+        if risposta == 's':
+            salva_sala(sala)
+        print("Uscita dal programma.")
+        break
+    posto = input("Inserisci il numero del posto (1-10): ")
+
+    try:
+        fila = int(fila)
+        posto = int(posto)
+    except ValueError:
+        print("Input non valido. Inserisci numeri.")
+        continue
+
+    prenotazione = prenota(sala, fila, posto)
+
+
