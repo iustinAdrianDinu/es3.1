@@ -1,11 +1,9 @@
 import os
-import csv
 
 
-# 1. Creazione sala: per ognuna delle 5 file abbiamo creato fila con 10 posti liberi L e aggiunto ogni fila alla sala
- 
+# Funzione creazione sala
+
 def crea_sala():
-    
     sala = []
     for i in range(5):
         if i == 3:                    
@@ -15,8 +13,8 @@ def crea_sala():
         sala.append(fila)
     return sala
 
-
-# 2. Visualizzazione della sala
+ 
+# Visualizzazione della sala
  
 def mostra_sala(sala):
     print("\n========= SALA CINEMA PARADISO ========")
@@ -36,7 +34,7 @@ def mostra_sala(sala):
  
  
  
-# 3. Prenotazione di un posto
+# Prenotazione di un posto
  
 def prenota(sala, fila, posto):
    
@@ -63,7 +61,3 @@ def prenota(sala, fila, posto):
  
     sala[fila][posto] = "X"            
     return True
- 
-    
-    
- 
