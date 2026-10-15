@@ -5,6 +5,7 @@ import csv
 # 1. Creazione sala: per ognuna delle 5 file abbiamo creato fila con 10 posti liberi L e aggiunto ogni fila alla sala
  
 def crea_sala():
+    
     sala = []
     for i in range(5):
         if i == 3:                    
